@@ -1,0 +1,8 @@
+{
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true
+  },
+  "claudeCodeEnv": {
+    "ANTHROPIC_BASE_URL": "http://localhost:3000"
+  }
+}
