@@ -36,7 +36,7 @@ export async function handlePostMessages(req: Request): Promise<Response> {
 		);
 	}
 
-	if (!isModelAllowed(body.model)) return unsupportedModel(body.model);
+	if (!(await isModelAllowed(body.model))) return unsupportedModel(body.model);
 
 	const { stream = false, ...rest } = body;
 	const upstream = await proxyToAnthropic("/v1/messages", rest, stream);

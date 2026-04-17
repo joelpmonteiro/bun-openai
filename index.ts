@@ -1,9 +1,10 @@
 import { serve } from "bun";
+import { PORT } from "./src/config";
 import { routes } from "./src/route/";
 
 serve({
-	port: 3000,
+	port: PORT,
 	routes: routes,
 });
 
-console.log(`Server Bun ${3000}`);
+console.log(`Server Bun ${PORT}`);

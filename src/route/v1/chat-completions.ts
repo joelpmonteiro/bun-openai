@@ -35,7 +35,7 @@ export async function handlePostChatCompletions(
 		);
 	}
 
-	if (!isModelAllowed(body.model)) return unsupportedModel(body.model);
+	if (!(await isModelAllowed(body.model))) return unsupportedModel(body.model);
 
 	const { stream = false, ...rest } = body;
 	const upstream = await proxyToOpenAI("/chat/completions", rest, stream);
