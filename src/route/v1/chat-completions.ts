@@ -1,7 +1,7 @@
 import { DEFAULT_REASONING_EFFORT } from "../../config";
 import { getToken, unauthorized } from "../../middleware/auth";
 import { isModelAllowed, unsupportedModel } from "../../models";
-import { proxyToOpenAI } from "../../proxy";
+import { isClaudeModel, proxyOpenAIChatToAnthropic, proxyToOpenAI } from "../../proxy";
 
 interface ChatMessage {
 	role: "system" | "user" | "assistant";
@@ -30,6 +30,12 @@ const SUPPORTED_REASONING_EFFORTS = new Set([
 	"max",
 ]);
 
+const EFFECTIVE_DEFAULT_REASONING_EFFORT = SUPPORTED_REASONING_EFFORTS.has(
+	DEFAULT_REASONING_EFFORT,
+)
+	? DEFAULT_REASONING_EFFORT
+	: "max";
+
 function withDefaultReasoning(
 	body: ChatCompletionsBody,
 ): ChatCompletionsBody {
@@ -41,7 +47,7 @@ function withDefaultReasoning(
 
 	return {
 		...body,
-		reasoning: { effort: "max" },
+		reasoning: { effort: EFFECTIVE_DEFAULT_REASONING_EFFORT },
 	};
 }
 
@@ -75,13 +81,16 @@ export async function handlePostChatCompletions(
 	if (!(await isModelAllowed(body.model))) return unsupportedModel(body.model);
 
 	const { stream = false, ...rest } = body;
-	const upstream = await proxyToOpenAI("/chat/completions", rest, stream);
+	const upstream = isClaudeModel(body.model)
+		? await proxyOpenAIChatToAnthropic(rest as Record<string, unknown>, stream)
+		: await proxyToOpenAI("/chat/completions", rest, stream);
 
 	return new Response(upstream.body, {
 		status: upstream.status,
 		headers: {
 			"content-type":
-				upstream.headers.get("content-type") ?? "application/json",
+				upstream.headers.get("content-type") ??
+				(stream ? "text/event-stream" : "application/json"),
 		},
 	});
 }
