@@ -58,17 +58,6 @@ export async function handlePostChatCompletions(
 	if (!token) return unauthorized();
 
 	const rawBody = (await req.json()) as ChatCompletionsBody;
-	console.log(
-		"[chat-completions] incoming controls",
-		JSON.stringify({
-			model: rawBody.model,
-			hasReasoning: rawBody.reasoning !== undefined,
-			reasoningEffort: rawBody.reasoning?.effort ?? null,
-			stream: rawBody.stream ?? false,
-			hasTools: Array.isArray(rawBody.tools) && rawBody.tools.length > 0,
-			toolChoice: rawBody.tool_choice ?? null,
-		}),
-	);
 	const body = withDefaultReasoning(rawBody);
 
 	if (!body.model || !body.messages?.length) {

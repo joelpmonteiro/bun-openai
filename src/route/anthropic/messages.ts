@@ -74,19 +74,6 @@ export async function handlePostMessages(req: Request): Promise<Response> {
 	}
 
 	const rawBody = (await req.json()) as MessagesBody;
-	console.log(
-		"[anthropic-messages] incoming controls",
-		JSON.stringify({
-			model: rawBody.model,
-			hasThinking: rawBody.thinking !== undefined,
-			thinkingType: rawBody.thinking?.type ?? null,
-			thinkingBudget: rawBody.thinking?.budget_tokens ?? null,
-			thinkingDisplay: rawBody.thinking?.display ?? null,
-			hasOutputConfig: rawBody.output_config !== undefined,
-			outputEffort: rawBody.output_config?.effort ?? null,
-			stream: rawBody.stream ?? false,
-		}),
-	);
 	const body = withClaudeThinkingDefaults(rawBody);
 
 	if (!body.model || !body.max_tokens || !body.messages?.length) {

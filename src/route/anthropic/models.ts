@@ -6,7 +6,6 @@ export async function handleGetAnthropicModels(
 ): Promise<Response> {
 	const token = getToken(req);
 	if (!token) return unauthorized();
-	console.log("testes de handleGetAnthropicModels");
 
 	const catalog = await getSupportedModels();
 	const models = catalog.models.filter((model) => model.owned_by === "anthropic");

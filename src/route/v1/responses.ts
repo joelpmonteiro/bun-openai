@@ -42,15 +42,6 @@ export async function handlePostResponses(req: Request): Promise<Response> {
 	if (!token) return unauthorized();
 
 	const rawBody = (await req.json()) as ResponsesBody;
-	console.log(
-		"[responses] incoming controls",
-		JSON.stringify({
-			model: rawBody.model,
-			hasReasoning: rawBody.reasoning !== undefined,
-			reasoningEffort: rawBody.reasoning?.effort ?? null,
-			stream: rawBody.stream ?? false,
-		}),
-	);
 	const body = withDefaultReasoning(rawBody);
 
 	if (!body.model || !body.input) {
