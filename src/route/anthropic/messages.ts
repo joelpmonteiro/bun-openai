@@ -19,6 +19,7 @@ export async function handlePostMessages(req: Request): Promise<Response> {
 	const token = getToken(req);
 	if (!token) return unauthorized();
 
+	console.log("testes de handlerPostMessages");
 	const version = req.headers.get("anthropic-version");
 	if (!version) {
 		return Response.json(
@@ -53,6 +54,7 @@ export async function handlePostMessages(req: Request): Promise<Response> {
 export async function handleCountTokens(req: Request): Promise<Response> {
 	const token = getToken(req);
 	if (!token) return unauthorized();
+	console.log("testes de handleCountTokens");
 
 	const body = await req.json();
 	const upstream = await proxyToAnthropic(

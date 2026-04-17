@@ -8,7 +8,21 @@
       "mcp__plugin_context7_context7__resolve-library-id",
       "mcp__plugin_context7_context7__query-docs",
       "Bash(ls -la .env*)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/anthropic/v1/models)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/anthropic/v1/models)",
+      "Bash(curl -s -w \"\\\\nHTTP_STATUS: %{http_code}\\\\n\" http://localhost:3000/anthropic/v1/models -H \"x-api-key: test\")",
+      "Bash(curl -s -w '\\\\nHTTP_STATUS: %{http_code}\\\\n' http://localhost:3000/anthropic/v1/messages -X POST -H 'Content-Type: application/json' -H 'x-api-key: test-key' -H 'anthropic-version: 2023-06-01' -d '{\"model\":\"claude-sonnet-4-6\",\"max_tokens\":10,\"messages\":[{\"role\":\"user\",\"content\":\"hi\"}]}')",
+      "Bash(curl:*)",
+      "Bash(ANTHROPIC_BASE_URL=http://localhost:3000/anthropic claude \"diga apenas: proxy funcionando\")",
+      "Bash(export ANTHROPIC_BASE_URL=http://localhost:3000/anthropic)",
+      "Bash(claude \"diga apenas: proxy funcionando\")",
+      "Bash(powershell:*)",
+      "Bash(ls -la /c/Users/Admin/Documents/GitHub/bun-theclawbay/.env*)",
+      "Bash(dig *)",
+      "Bash(python3 -m json.tool)",
+      "Bash(type=A 2>&1)"
     ]
+  },
+  "claudeCodeEnv": {
+    "ANTHROPIC_BASE_URL": "http://localhost:3000/anthropic"
   }
 }

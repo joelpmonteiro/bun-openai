@@ -1,4 +1,8 @@
 import { Database } from "bun:sqlite";
+import { existsSync, mkdirSync } from "node:fs";
+
+// const dataDir = process.env.NODE_ENV === "production" ? "/app/data" : ".";
+// if (!existsSync(dataDir)) mkdirSync(dataDir, { recursive: true });
 
 const db = new Database("theclawbay.sqlite", { create: true, strict: true });
 db.run("PRAGMA journal_mode = WAL;");

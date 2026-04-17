@@ -1,0 +1,16 @@
+services:
+  proxy:
+    build: .
+    container_name: theclawbay-proxy
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    volumes:
+      - sqlite-data:/app/data
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+
+volumes:
+  sqlite-data:
