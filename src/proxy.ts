@@ -10,8 +10,18 @@ export async function proxyToOpenAI(
 	stream: boolean,
 ): Promise<Response> {
 	const url = `${OPENAI_URL_BASE}${path}`;
-	const model = (body as Record<string, unknown>).model ?? "unknown";
+	const requestBody = (body ?? {}) as Record<string, unknown>;
+	const payload: Record<string, unknown> = { ...requestBody, stream };
+	const model = payload.model ?? "unknown";
 	console.log(`[proxy] → OpenAI  ${path}  model=${model}  stream=${stream}`);
+	console.log(
+		"[proxy] OpenAI payload controls",
+		JSON.stringify({
+			reasoning: payload.reasoning ?? null,
+			thinking: payload.thinking ?? null,
+			output_config: payload.output_config ?? null,
+		}),
+	);
 	const start = performance.now();
 	const response = await fetch(url, {
 		method: "POST",
@@ -19,7 +29,7 @@ export async function proxyToOpenAI(
 			"content-type": "application/json",
 			authorization: `Bearer ${API_KEY}`,
 		},
-		body: JSON.stringify({ ...(body as object), stream }),
+		body: JSON.stringify(payload),
 	});
 	const ms = (performance.now() - start).toFixed(0);
 	console.log(`[proxy] ← OpenAI  ${path}  status=${response.status}  ${ms}ms`);
@@ -32,8 +42,17 @@ export async function proxyToAnthropic(
 	stream: boolean,
 ): Promise<Response> {
 	const url = `${CLAUDE_URL_BASE}${path}`;
-	const model = (body as Record<string, unknown>).model ?? "unknown";
+	const requestBody = (body ?? {}) as Record<string, unknown>;
+	const payload: Record<string, unknown> = { ...requestBody, stream };
+	const model = payload.model ?? "unknown";
 	console.log(`[proxy] → Anthropic  ${path}  model=${model}  stream=${stream}`);
+	console.log(
+		"[proxy] Anthropic payload controls",
+		JSON.stringify({
+			thinking: payload.thinking ?? null,
+			output_config: payload.output_config ?? null,
+		}),
+	);
 	const start = performance.now();
 	const headers: Record<string, string> = {
 		"content-type": "application/json",
@@ -44,12 +63,10 @@ export async function proxyToAnthropic(
 		headers["accept"] = "text/event-stream";
 	}
 
-	console.log("testes de proxyToAnthropic");
-
 	const response = await fetch(url, {
 		method: "POST",
 		headers,
-		body: JSON.stringify({ ...(body as object), stream }),
+		body: JSON.stringify(payload),
 	});
 	const ms = (performance.now() - start).toFixed(0);
 	console.log(

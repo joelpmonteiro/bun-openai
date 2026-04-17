@@ -2,7 +2,7 @@ import { getSupportedModels } from "../../models";
 
 export async function handleGetModels(): Promise<Response> {
 	const catalog = await getSupportedModels();
-
+	console.log("catalog: ", catalog);
 	return Response.json({
 		object: "list",
 		data: catalog.models.map((m) => ({

@@ -6,3 +6,7 @@ export const CLAUDE_URL_BASE =
 export const MODELS_CACHE_TTL_MS = Number(
 	process.env.THECLAWBAY_MODELS_CACHE_TTL_MS ?? "60000",
 );
+export const DEFAULT_REASONING_EFFORT =
+	process.env.DEFAULT_REASONING_EFFORT ?? "max";
+export const DEFAULT_CLAUDE_THINKING_DISPLAY =
+	process.env.DEFAULT_CLAUDE_THINKING_DISPLAY ?? "omitted";

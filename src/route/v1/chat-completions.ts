@@ -1,3 +1,4 @@
+import { DEFAULT_REASONING_EFFORT } from "../../config";
 import { getToken, unauthorized } from "../../middleware/auth";
 import { isModelAllowed, unsupportedModel } from "../../models";
 import { proxyToOpenAI } from "../../proxy";
@@ -17,7 +18,31 @@ interface ChatCompletionsBody {
 	messages: ChatMessage[];
 	tools?: ToolDefinition[];
 	tool_choice?: string;
+	reasoning?: { effort?: unknown };
 	stream?: boolean;
+}
+
+const SUPPORTED_REASONING_EFFORTS = new Set([
+	"low",
+	"medium",
+	"high",
+	"xhigh",
+	"max",
+]);
+
+function withDefaultReasoning(
+	body: ChatCompletionsBody,
+): ChatCompletionsBody {
+	const effort = body.reasoning?.effort;
+
+	if (typeof effort === "string" && SUPPORTED_REASONING_EFFORTS.has(effort)) {
+		return body;
+	}
+
+	return {
+		...body,
+		reasoning: { effort: "max" },
+	};
 }
 
 export async function handlePostChatCompletions(
@@ -26,7 +51,19 @@ export async function handlePostChatCompletions(
 	const token = getToken(req);
 	if (!token) return unauthorized();
 
-	const body = (await req.json()) as ChatCompletionsBody;
+	const rawBody = (await req.json()) as ChatCompletionsBody;
+	console.log(
+		"[chat-completions] incoming controls",
+		JSON.stringify({
+			model: rawBody.model,
+			hasReasoning: rawBody.reasoning !== undefined,
+			reasoningEffort: rawBody.reasoning?.effort ?? null,
+			stream: rawBody.stream ?? false,
+			hasTools: Array.isArray(rawBody.tools) && rawBody.tools.length > 0,
+			toolChoice: rawBody.tool_choice ?? null,
+		}),
+	);
+	const body = withDefaultReasoning(rawBody);
 
 	if (!body.model || !body.messages?.length) {
 		return Response.json(

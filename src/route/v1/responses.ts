@@ -1,3 +1,4 @@
+import { DEFAULT_REASONING_EFFORT } from "../../config";
 import { getToken, unauthorized } from "../../middleware/auth";
 import { isModelAllowed, unsupportedModel } from "../../models";
 import { proxyToOpenAI } from "../../proxy";
@@ -5,15 +6,52 @@ import { proxyToOpenAI } from "../../proxy";
 interface ResponsesBody {
 	model: string;
 	input: string;
-	reasoning?: { effort: "low" | "medium" | "high" };
+	reasoning?: { effort?: unknown };
 	stream?: boolean;
+}
+
+const SUPPORTED_REASONING_EFFORTS = new Set([
+	"low",
+	"medium",
+	"high",
+	"xhigh",
+	"max",
+]);
+
+const EFFECTIVE_DEFAULT_REASONING_EFFORT = SUPPORTED_REASONING_EFFORTS.has(
+	DEFAULT_REASONING_EFFORT,
+)
+	? DEFAULT_REASONING_EFFORT
+	: "max";
+
+function withDefaultReasoning(body: ResponsesBody): ResponsesBody {
+	const effort = body.reasoning?.effort;
+
+	if (typeof effort === "string" && SUPPORTED_REASONING_EFFORTS.has(effort)) {
+		return body;
+	}
+
+	return {
+		...body,
+		reasoning: { effort: EFFECTIVE_DEFAULT_REASONING_EFFORT },
+	};
 }
 
 export async function handlePostResponses(req: Request): Promise<Response> {
 	const token = getToken(req);
 	if (!token) return unauthorized();
 
-	const body = (await req.json()) as ResponsesBody;
+	const rawBody = (await req.json()) as ResponsesBody;
+	console.log(
+		"[responses] incoming controls",
+		JSON.stringify({
+			model: rawBody.model,
+			hasReasoning: rawBody.reasoning !== undefined,
+			reasoningEffort: rawBody.reasoning?.effort ?? null,
+			stream: rawBody.stream ?? false,
+		}),
+	);
+	const body = withDefaultReasoning(rawBody);
 
 	if (!body.model || !body.input) {
 		return Response.json(
