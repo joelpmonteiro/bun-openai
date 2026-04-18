@@ -9,4 +9,4 @@ base_url = "http://localhost:3000/api"
 wire_api = "responses"
 requires_openai_auth = true
 supports_websockets = true
-experimental_bearer_token = "ca_v1.aHR0cHM6Ly90aGVjbGF3YmF5LmNvbQ.gnTh4viigJ81vOiQtK0aDagvsyqTcPi87JJJwlRl0JQ"
+experimental_bearer_token = ""
