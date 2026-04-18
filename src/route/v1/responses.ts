@@ -1,13 +1,18 @@
 import { DEFAULT_REASONING_EFFORT } from "../../config";
 import { getToken, unauthorized } from "../../middleware/auth";
 import { isModelAllowed, unsupportedModel } from "../../models";
-import { proxyToOpenAI } from "../../proxy";
+import { isClaudeModel, proxyOpenAIResponsesToAnthropic, proxyToOpenAI } from "../../proxy";
 
 interface ResponsesBody {
 	model: string;
-	input: string;
+	input: unknown;
 	reasoning?: { effort?: unknown };
 	stream?: boolean;
+	instructions?: unknown;
+	max_output_tokens?: number;
+	tools?: unknown[];
+	tool_choice?: unknown;
+	thinking?: { type?: unknown; display?: unknown };
 }
 
 const SUPPORTED_REASONING_EFFORTS = new Set([
@@ -44,7 +49,7 @@ export async function handlePostResponses(req: Request): Promise<Response> {
 	const rawBody = (await req.json()) as ResponsesBody;
 	const body = withDefaultReasoning(rawBody);
 
-	if (!body.model || !body.input) {
+	if (!body.model || body.input === undefined || body.input === null) {
 		return Response.json(
 			{ error: "model and input are required" },
 			{ status: 400 },
@@ -54,7 +59,12 @@ export async function handlePostResponses(req: Request): Promise<Response> {
 	if (!(await isModelAllowed(body.model))) return unsupportedModel(body.model);
 
 	const { stream = false, ...rest } = body;
-	const upstream = await proxyToOpenAI("/responses", rest, stream);
+	const upstream = isClaudeModel(body.model)
+		? await proxyOpenAIResponsesToAnthropic(
+			(rest as Record<string, unknown>),
+			stream,
+		)
+		: await proxyToOpenAI("/responses", rest, stream);
 
 	return new Response(upstream.body, {
 		status: upstream.status,
