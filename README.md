@@ -1,4 +1,4 @@
-# bun-theclawbay
+# bun-openai
 
 To install dependencies:
 
