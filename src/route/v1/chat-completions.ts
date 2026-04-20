@@ -70,9 +70,10 @@ export async function handlePostChatCompletions(
 	if (!(await isModelAllowed(body.model))) return unsupportedModel(body.model);
 
 	const { stream = false, ...rest } = body;
-	const upstream = isClaudeModel(body.model)
-		? await proxyOpenAIChatToAnthropic(rest as Record<string, unknown>, stream)
-		: await proxyToOpenAI("/chat/completions", rest, stream);
+	const upstream = await proxyToOpenAI("/chat/completions", rest, stream);
+	// isClaudeModel(body.model)
+	// 	? await proxyOpenAIChatToAnthropic(rest as Record<string, unknown>, stream)
+	// 	: await proxyToOpenAI("/chat/completions", rest, stream);
 
 	return new Response(upstream.body, {
 		status: upstream.status,
