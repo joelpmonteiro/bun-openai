@@ -1,7 +1,7 @@
-import { PORT, CLAUDE_URL_BASE, MODELS_CACHE_TTL_MS, OPENAI_URL_BASE } from "../../config";
-import { getKeyCooldownMs, getKeyCount, getKeyRotationIndex, getKeyStatusSnapshot } from "../../key-pool";
+import { PORT, CLAUDE_URL_BASE, MODELS_CACHE_TTL_MS, OPENAI_URL_BASE } from "../../config/config";
+import { getKeyCooldownMs, getKeyCount, getKeyRotationIndex, getKeyStatusSnapshot } from "../../config/key-pool";
 import { getToken, unauthorized } from "../../middleware/auth";
-import { getSupportedModels } from "../../models";
+import { getSupportedModels } from "../../model/models";
 
 export async function handleGetStatus(req: Request): Promise<Response> {
 	const token = getToken(req);

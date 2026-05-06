@@ -1,4 +1,4 @@
-import { db } from "../../db";
+import { db } from "../../database/db";
 import { getToken, unauthorized } from "../../middleware/auth";
 
 export async function handleGetQuota(req: Request): Promise<Response> {

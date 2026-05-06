@@ -5,11 +5,11 @@ interface UpstreamKey {
 }
 
 const DEFAULT_COOLDOWN_MS = 30_000;
-const rawKeys = (process.env.THECLAWBAY_API_KEYS ?? "")
+const rawKeys = (process.env.OPENAI_API_KEYS ?? "")
 	.split(",")
 	.map((key) => key.trim())
 	.filter(Boolean);
-const legacyKey = (process.env.THECLAWBAY_API_KEY ?? "").trim();
+const legacyKey = (process.env.OPENAI_API_KEY ?? "").trim();
 const configuredKeys = rawKeys.length > 0 ? rawKeys : legacyKey ? [legacyKey] : [];
 
 const upstreamKeys: UpstreamKey[] = configuredKeys.map((value, index) => ({
@@ -22,7 +22,7 @@ let nextKeyIndex = 0;
 
 function getCooldownMs(): number {
 	const parsed = Number(
-		process.env.THECLAWBAY_KEY_COOLDOWN_MS ?? DEFAULT_COOLDOWN_MS,
+		process.env.OPENAI_KEY_COOLDOWN_MS ?? DEFAULT_COOLDOWN_MS,
 	);
 	return Number.isFinite(parsed) && parsed >= 0 ? parsed : DEFAULT_COOLDOWN_MS;
 }

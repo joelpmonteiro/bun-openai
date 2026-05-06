@@ -1,4 +1,4 @@
-import { getSupportedModels } from "../../models";
+import { getSupportedModels } from "../../model/models";
 
 export async function handleGetModels(): Promise<Response> {
 	const catalog = await getSupportedModels();

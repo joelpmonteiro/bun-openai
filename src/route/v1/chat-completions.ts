@@ -1,7 +1,7 @@
-import { DEFAULT_REASONING_EFFORT } from "../../config";
+import { DEFAULT_REASONING_EFFORT } from "../../config/config";
 import { getToken, unauthorized } from "../../middleware/auth";
-import { isModelAllowed, unsupportedModel } from "../../models";
-import { isClaudeModel, proxyOpenAIChatToAnthropic, proxyToOpenAI } from "../../proxy";
+import { isModelAllowed, unsupportedModel } from "../../model/models";
+import { openAI } from "../../openai/api";
 
 interface ChatMessage {
 	role: "system" | "user" | "assistant";
@@ -70,10 +70,7 @@ export async function handlePostChatCompletions(
 	if (!(await isModelAllowed(body.model))) return unsupportedModel(body.model);
 
 	const { stream = false, ...rest } = body;
-	const upstream = await proxyToOpenAI("/chat/completions", rest, stream);
-	// isClaudeModel(body.model)
-	// 	? await proxyOpenAIChatToAnthropic(rest as Record<string, unknown>, stream)
-	// 	: await proxyToOpenAI("/chat/completions", rest, stream);
+	const upstream = await openAI("/chat/completions", rest, stream);
 
 	return new Response(upstream.body, {
 		status: upstream.status,

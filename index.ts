@@ -1,5 +1,5 @@
 import { serve } from "bun";
-import { PORT } from "./src/config";
+import { PORT } from "./src/config/config";
 import { routes } from "./src/route/";
 
 serve({

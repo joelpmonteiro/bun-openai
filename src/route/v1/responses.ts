@@ -1,11 +1,11 @@
-import { DEFAULT_REASONING_EFFORT } from "../../config";
+import { DEFAULT_REASONING_EFFORT } from "../../config/config";
 import { getToken, unauthorized } from "../../middleware/auth";
-import { isModelAllowed, unsupportedModel } from "../../models";
-import { isClaudeModel, proxyOpenAIResponsesToAnthropic, proxyToOpenAI } from "../../proxy";
+import { isModelAllowed, unsupportedModel } from "../../model/models";
+import { openAI, openAI_ } from "../../openai/api";
 
 interface ResponsesBody {
 	model: string;
-	input: unknown;
+	input: string;
 	reasoning?: { effort?: unknown };
 	stream?: boolean;
 	instructions?: unknown;
@@ -59,13 +59,12 @@ export async function handlePostResponses(req: Request): Promise<Response> {
 	if (!(await isModelAllowed(body.model))) return unsupportedModel(body.model);
 
 	const { stream = false, ...rest } = body;
-	const upstream = isClaudeModel(body.model)
-		? await proxyOpenAIResponsesToAnthropic(
-			(rest as Record<string, unknown>),
-			stream,
-		)
-		: await proxyToOpenAI("/responses", rest, stream);
-
+	const upstream = await openAI_('responses',rest,stream)
+	// const upstream = await openAI.responses.create({
+	// 	model:body.model,
+	// 	input:body.input,
+	// });
+	
 	return new Response(upstream.body, {
 		status: upstream.status,
 		headers: {
@@ -73,4 +72,12 @@ export async function handlePostResponses(req: Request): Promise<Response> {
 				upstream.headers.get("content-type") ?? "application/json",
 		},
 	});
+
+
+	// console.log('upstream: ', upstream)
+	// return new Response(upstream.output_text, {
+	// 	headers: {
+	// 		"content-type": "application/json",
+	// 	},
+	// });
 }

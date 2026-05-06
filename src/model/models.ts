@@ -1,5 +1,5 @@
-import { MODELS_CACHE_TTL_MS, OPENAI_URL_BASE } from "./config";
-import { getMetadataApiKey } from "./key-pool";
+import { MODELS_CACHE_TTL_MS, OPENAI_URL_BASE } from "../config/config";
+import { getMetadataApiKey } from "../config/key-pool";
 
 export interface ModelInfo {
 	id: string;
@@ -7,15 +7,7 @@ export interface ModelInfo {
 	created: number;
 }
 
-const FALLBACK_MODELS: ModelInfo[] = [
-	// Anthropic
-	{ id: "claude-opus-4-7", owned_by: "anthropic", created: 1773290000 },
-	{ id: "claude-opus-4-6", owned_by: "anthropic", created: 1773290000 },
-	{ id: "claude-opus-4-5", owned_by: "anthropic", created: 1773290000 },
-	{ id: "claude-sonnet-4-6", owned_by: "anthropic", created: 1773290000 },
-	{ id: "claude-sonnet-4-5", owned_by: "anthropic", created: 1773290000 },
-	{ id: "claude-sonnet-4", owned_by: "anthropic", created: 1773290000 },
-	{ id: "claude-haiku-4-5", owned_by: "anthropic", created: 1773290000 },
+const OPENAI_MODELS: ModelInfo[] = [
 
 	// OpenAI
 	{ id: "gpt-5.4", owned_by: "openai", created: 1773290000 },
@@ -24,7 +16,7 @@ const FALLBACK_MODELS: ModelInfo[] = [
 	{ id: "gpt-5.2-codex", owned_by: "openai", created: 1773290000 },
 	{ id: "gpt-5.2", owned_by: "openai", created: 1773290000 },
 	{ id: "gpt-5.1-codex-max", owned_by: "openai", created: 1773290000 },
-	{ id: "gpt-5.1-codex-mini", owned_by: "openai", created: 1773290000 },
+	{ id: "gpt-5.4-nano", owned_by: "openai", created: 1773290000 },
 ];
 
 interface UpstreamModelResponse {
@@ -43,7 +35,7 @@ interface ModelCatalogCache {
 
 const modelCache: ModelCatalogCache = {
 	fetchedAt: null,
-	models: FALLBACK_MODELS,
+	models: OPENAI_MODELS,
 	source: "fallback",
 };
 
@@ -95,7 +87,7 @@ export async function getSupportedModels(
 	const apiKey = getMetadataApiKey();
 	if (!apiKey) {
 		modelCache.fetchedAt = now;
-		modelCache.models = FALLBACK_MODELS;
+		modelCache.models = OPENAI_MODELS;
 		modelCache.source = "fallback";
 		return modelCache;
 	}
@@ -122,7 +114,7 @@ export async function getSupportedModels(
 		return modelCache;
 	} catch {
 		modelCache.fetchedAt = now;
-		modelCache.models = FALLBACK_MODELS;
+		modelCache.models = OPENAI_MODELS;
 		modelCache.source = "fallback";
 		return modelCache;
 	}
