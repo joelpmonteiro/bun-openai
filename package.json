@@ -5,6 +5,8 @@
   "private": true,
   "scripts": {
     "start": "bun run --watch index.ts",
+    "dashboard": "bun --cwd dashboard run dev",
+    "dashboard:build": "bun --cwd dashboard run build",
     "test": "bun test",
     "typecheck": "tsc --noEmit",
     "copilot:export": "bun run scripts/export-copilot.ts"

@@ -86,6 +86,19 @@ snapshot publico. O header `x-model-catalog-source` distingue `upstream`,
 `stale` e `public-snapshot`. O snapshot nao garante acesso pelo seu plano.
 Erros de autenticacao e permissao da APMix sao retornados ao cliente.
 
+## Dashboard
+
+O painel em [dashboard](dashboard) mostra status, catalogo e uso. A chave fica
+somente na sessao do navegador.
+
+```powershell
+bun run dashboard:build
+bun run start
+```
+
+Abra `http://127.0.0.1:4500/`. Durante o desenvolvimento, `bun run dashboard`
+sobe o Vite em `http://127.0.0.1:5173` e encaminha `/v1` para o proxy.
+
 ## Rotas
 
 | Metodo | Rota | Finalidade |
