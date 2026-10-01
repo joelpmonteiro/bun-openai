@@ -1,17 +1,17 @@
-FROM oven/bun:1 AS base
+FROM oven/bun:1.3.14-slim AS base
 WORKDIR /app
 
-# install dependencies
 FROM base AS deps
-COPY package.json bun.lock* ./
+COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile --production
 
-# production image
 FROM base
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 ENV NODE_ENV=production
-EXPOSE 3000
+ENV HOST=0.0.0.0
+ENV PORT=4500
+EXPOSE 4500
 
 CMD ["bun", "run", "index.ts"]

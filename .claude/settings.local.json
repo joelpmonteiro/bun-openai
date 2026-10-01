@@ -1,7 +1,6 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:theclawbay.com)",
       "Bash(bunx tsc:*)",
       "Bash(bun add:*)",
       "WebFetch(domain:docs.continue.dev)",
@@ -16,13 +15,14 @@
       "Bash(export ANTHROPIC_BASE_URL=http://localhost:3000/anthropic)",
       "Bash(claude \"diga apenas: proxy funcionando\")",
       "Bash(powershell:*)",
-      "Bash(ls -la /c/Users/Admin/Documents/GitHub/bun-theclawbay/.env*)",
       "Bash(dig *)",
       "Bash(python3 -m json.tool)",
-      "Bash(type=A 2>&1)"
+      "Bash(type=A 2>&1)",
+      "WebFetch(domain:apmix.ai)",
+      "WebFetch(domain:api.apmix.ai)",
+      "Bash(bun run typecheck:*)",
+      "Bash(bun test:*)",
+      "Bash(bun install:*)"
     ]
-  },
-  "claudeCodeEnv": {
-    "ANTHROPIC_BASE_URL": "http://localhost:3000/anthropic"
   }
 }

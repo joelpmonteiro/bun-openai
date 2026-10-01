@@ -1,12 +1,11 @@
-export const PORT = Number(process.env.PORT ?? "4500");
-export const OPENAI_URL_BASE =
-	process.env.OPENAI_URL_BASE ?? "https://api.theclawbay.com/v1";
-export const CLAUDE_URL_BASE =
-	process.env.CLAUDE_URL_BASE ?? "https://api.theclawbay.com/anthropic";
-export const MODELS_CACHE_TTL_MS = Number(
-	process.env.THECLAWBAY_MODELS_CACHE_TTL_MS ?? "60000",
-);
-export const DEFAULT_REASONING_EFFORT =
-	process.env.DEFAULT_REASONING_EFFORT ?? "max";
-export const DEFAULT_CLAUDE_THINKING_DISPLAY =
-	process.env.DEFAULT_CLAUDE_THINKING_DISPLAY ?? "omitted";
+function positiveNumber(name: string, fallback: number): number {
+	const value = Number(process.env[name] ?? fallback);
+	return Number.isFinite(value) && value > 0 ? value : fallback;
+}
+
+export const PORT = positiveNumber("PORT", 4500);
+export const HOST = process.env.HOST ?? "127.0.0.1";
+export const APMIX_BASE_URL = (process.env.APMIX_BASE_URL ?? "https://api.apmix.ai/v1").replace(/\/+$/, "");
+export const MODELS_CACHE_TTL_MS = positiveNumber("APMIX_MODELS_CACHE_TTL_MS", 60_000);
+export const UPSTREAM_TIMEOUT_MS = positiveNumber("APMIX_TIMEOUT_MS", 120_000);
+export const PROXY_API_KEY = process.env.PROXY_API_KEY?.trim() ?? "";

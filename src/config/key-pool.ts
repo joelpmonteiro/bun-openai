@@ -5,12 +5,12 @@ interface UpstreamKey {
 }
 
 const DEFAULT_COOLDOWN_MS = 30_000;
-const rawKeys = (process.env.OPENAI_API_KEYS ?? "")
+const rawKeys = (process.env.APMIX_API_KEYS ?? "")
 	.split(",")
 	.map((key) => key.trim())
 	.filter(Boolean);
-const legacyKey = (process.env.OPENAI_API_KEY ?? "").trim();
-const configuredKeys = rawKeys.length > 0 ? rawKeys : legacyKey ? [legacyKey] : [];
+const singleKey = (process.env.APMIX_API_KEY ?? "").trim();
+const configuredKeys = [...new Set(rawKeys.length > 0 ? rawKeys : singleKey ? [singleKey] : [])];
 
 const upstreamKeys: UpstreamKey[] = configuredKeys.map((value, index) => ({
 	index,
@@ -22,7 +22,7 @@ let nextKeyIndex = 0;
 
 function getCooldownMs(): number {
 	const parsed = Number(
-		process.env.OPENAI_KEY_COOLDOWN_MS ?? DEFAULT_COOLDOWN_MS,
+		process.env.APMIX_KEY_COOLDOWN_MS ?? DEFAULT_COOLDOWN_MS,
 	);
 	return Number.isFinite(parsed) && parsed >= 0 ? parsed : DEFAULT_COOLDOWN_MS;
 }
@@ -61,16 +61,6 @@ export function getNextUpstreamKey(excludedIndex?: number): UpstreamKey | null {
 		if (!candidate) continue;
 		if (candidate.index === excludedIndex) continue;
 		if (!isAvailable(candidate, now)) continue;
-
-		nextKeyIndex = (candidateIndex + 1) % upstreamKeys.length;
-		return candidate;
-	}
-
-	for (let offset = 0; offset < upstreamKeys.length; offset += 1) {
-		const candidateIndex = (nextKeyIndex + offset) % upstreamKeys.length;
-		const candidate = upstreamKeys[candidateIndex];
-		if (!candidate) continue;
-		if (candidate.index === excludedIndex) continue;
 
 		nextKeyIndex = (candidateIndex + 1) % upstreamKeys.length;
 		return candidate;

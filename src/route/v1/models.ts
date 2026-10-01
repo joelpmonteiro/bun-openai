@@ -1,14 +1,13 @@
-import { getSupportedModels } from "../../model/models";
+import { authenticate } from "../../middleware/auth";
+import { getSupportedModels } from "../../catalog/model-catalog";
+import { metadataKey } from "../../openai/api";
 
-export async function handleGetModels(): Promise<Response> {
-	const catalog = await getSupportedModels();
-	return Response.json({
-		object: "list",
-		data: catalog.models.map((m) => ({
-			id: m.id,
-			object: "model",
-			created: m.created,
-			owned_by: m.owned_by,
-		})),
+export async function handleGetModels(req: Request): Promise<Response> {
+	const denied = authenticate(req);
+	if (denied) return denied;
+	const catalog = await getSupportedModels(metadataKey(req));
+	if (catalog.error) return catalog.error;
+	return Response.json({ object: "list", data: catalog.models }, {
+		headers: { "x-model-catalog-source": catalog.source },
 	});
 }

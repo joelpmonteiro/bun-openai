@@ -1,0 +1,8 @@
+model_provider = "apmix"
+model = "openai/gpt-6.1-sol"
+
+[model_providers.apmix]
+name = "APMix local proxy"
+base_url = "http://127.0.0.1:4500/v1"
+wire_api = "responses"
+env_key = "APMIX_API_KEY"

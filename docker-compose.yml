@@ -1,16 +1,13 @@
 services:
   proxy:
     build: .
-    container_name: theclawbay-proxy
+    container_name: apmix-proxy
     ports:
-      - "3000:3000"
+      - "127.0.0.1:4500:4500"
     env_file:
       - .env
-    volumes:
-      - sqlite-data:/app/data
     environment:
-      - NODE_ENV=production
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 4500
     restart: unless-stopped
-
-volumes:
-  sqlite-data:

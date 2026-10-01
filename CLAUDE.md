@@ -1,27 +1,25 @@
-# CLAUDE.md
+# Project Guidance
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## Project Overview
-
-Backend API server for "The Claw Bay" built with Bun's native HTTP server (`Bun.serve`) and TypeScript.
+Bun and TypeScript proxy for APMix with OpenAI-compatible Chat Completions,
+Responses, model discovery and usage. Copilot Chat uses the Custom Endpoint
+provider in VS Code.
 
 ## Commands
 
-- **Install dependencies:** `bun install`
-- **Run dev server (with watch):** `bun run start` (runs on port 3000)
-- **Run directly:** `bun run index.ts`
-- **Type check:** `bunx tsc --noEmit`
+- Install: `bun install`
+- Development server: `bun run start` (127.0.0.1:4500)
+- Tests: `bun test`
+- Type checking: `bun run typecheck`
 
 ## Architecture
 
-- **`index.ts`** — Entry point. Creates the Bun HTTP server on port 3000 using Bun's built-in route-based `serve()` API.
-- **`src/route/`** — Route definitions exported as a routes object consumed by `Bun.serve({ routes })`.
-- Uses Bun's built-in `sql` (Postgres) for database access — no external ORM.
+- `index.ts`: Bun.serve entry point.
+- `src/route/`: HTTP routes and validation.
+- `src/openai/api.ts`: shared native-fetch APMix transport.
+- `src/catalog/`: model catalog retrieval, normalization, per-key cache and public snapshot.
+- `src/config/`: environment configuration and API key rotation.
 
-## Key Conventions
-
-- Runtime is **Bun** (not Node). Use Bun-native APIs (`Bun.serve`, `bun:sql`, etc.) over Node equivalents.
-- TypeScript strict mode is enabled with `noUncheckedIndexedAccess` and `noImplicitOverride`.
-- Module system: ESNext with bundler-style resolution (`"module": "Preserve"`).
-- Environment variables go in `.env` files (gitignored).
+Use Bun-native APIs, strict TypeScript and repository-local conventions.
+Never log or commit credentials. Preserve tool calls, multimodal input,
+reasoning options and SSE bytes; do not force provider-specific defaults.
+Models are validated by APMix, whose plan-scoped catalog is authoritative.

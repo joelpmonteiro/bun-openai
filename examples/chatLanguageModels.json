@@ -1,0 +1,918 @@
+[
+  {
+    "name": "APMix",
+    "vendor": "customendpoint",
+    "apiKey": "${input:apmixProxyApiKey}",
+    "apiType": "chat-completions",
+    "models": [
+      {
+        "id": "google/gemini-3.8-flash",
+        "name": "google/gemini-3.8-flash",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "google/gemini-3.7-flash",
+        "name": "google/gemini-3.7-flash",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "google/gemini-3.6-flash",
+        "name": "google/gemini-3.6-flash",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "xai/grok-4.5",
+        "name": "xai/grok-4.5",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "deepseek/deepseek-v4-pro",
+        "name": "deepseek/deepseek-v4-pro",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "deepseek/deepseek-v4-flash",
+        "name": "deepseek/deepseek-v4-flash",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "alibaba/qwen3.8-flash",
+        "name": "alibaba/qwen3.8-flash",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "zai/glm-5.3-flash",
+        "name": "zai/glm-5.3-flash",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "xiaomi/mimo-v2.5-pro",
+        "name": "xiaomi/mimo-v2.5-pro",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "tencent/hy4-preview",
+        "name": "tencent/hy4-preview",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-haiku-4-5",
+        "name": "anthropic/claude-haiku-4-5",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "openai/gpt-5.6-terra",
+        "name": "openai/gpt-5.6-terra",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-sonnet-5",
+        "name": "anthropic/claude-sonnet-5",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "google/gemini-3.1-pro",
+        "name": "google/gemini-3.1-pro",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "zai/glm-5.3",
+        "name": "zai/glm-5.3",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "zai/glm-5.2",
+        "name": "zai/glm-5.2",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "zai/glm-5-turbo",
+        "name": "zai/glm-5-turbo",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "moonshot/kimi-k2.7-code",
+        "name": "moonshot/kimi-k2.7-code",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "openai/gpt-5.6-sol",
+        "name": "openai/gpt-5.6-sol",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "openai/gpt-5.5",
+        "name": "openai/gpt-5.5",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "alibaba/qwen3.8-max",
+        "name": "alibaba/qwen3.8-max",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-opus-5",
+        "name": "anthropic/claude-opus-5",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-opus-4-8",
+        "name": "anthropic/claude-opus-4-8",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-opus-4-7",
+        "name": "anthropic/claude-opus-4-7",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-opus-4-6",
+        "name": "anthropic/claude-opus-4-6",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "openai/gpt-6-astra",
+        "name": "openai/gpt-6-astra",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-fable-5",
+        "name": "anthropic/claude-fable-5",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-sonnet-4-6",
+        "name": "anthropic/claude-sonnet-4-6",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "cursor/composer-2.5-fast",
+        "name": "cursor/composer-2.5-fast",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "deepseek/deepseek-v4.1-flash",
+        "name": "deepseek/deepseek-v4.1-flash",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "xai/grok-4.6",
+        "name": "xai/grok-4.6",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "moonshot/kimi-k3",
+        "name": "moonshot/kimi-k3",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "minimax/minimax-m3",
+        "name": "minimax/minimax-m3",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "xiaomi/mimo-v2.5",
+        "name": "xiaomi/mimo-v2.5",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "openai/gpt-5.6-luna",
+        "name": "openai/gpt-5.6-luna",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "xai/grok-4.7",
+        "name": "xai/grok-4.7",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "openai/gpt-6-sol",
+        "name": "openai/gpt-6-sol",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "openai/gpt-6-luna",
+        "name": "openai/gpt-6-luna",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-fable-5-1",
+        "name": "anthropic/claude-fable-5-1",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-opus-5-5",
+        "name": "anthropic/claude-opus-5-5",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "stealth/space-bunny",
+        "name": "stealth/space-bunny",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "deepseek/deepseek-v4-flash-free",
+        "name": "deepseek/deepseek-v4-flash-free",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "meta/muse-spark-1.3",
+        "name": "meta/muse-spark-1.3",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-sonnet-5-5",
+        "name": "anthropic/claude-sonnet-5-5",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "openai/gpt-6.1-sol",
+        "name": "openai/gpt-6.1-sol",
+        "url": "http://127.0.0.1:4500/v1/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      }
+    ]
+  },
+  {
+    "name": "APMix Thinking",
+    "vendor": "customendpoint",
+    "apiKey": "${input:apmixProxyApiKey}",
+    "apiType": "chat-completions",
+    "models": [
+      {
+        "id": "google/gemini-3.8-flash",
+        "name": "google/gemini-3.8-flash (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "google/gemini-3.7-flash",
+        "name": "google/gemini-3.7-flash (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "google/gemini-3.6-flash",
+        "name": "google/gemini-3.6-flash (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "xai/grok-4.5",
+        "name": "xai/grok-4.5 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "deepseek/deepseek-v4-pro",
+        "name": "deepseek/deepseek-v4-pro (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "deepseek/deepseek-v4-flash",
+        "name": "deepseek/deepseek-v4-flash (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "alibaba/qwen3.8-flash",
+        "name": "alibaba/qwen3.8-flash (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "zai/glm-5.3-flash",
+        "name": "zai/glm-5.3-flash (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "xiaomi/mimo-v2.5-pro",
+        "name": "xiaomi/mimo-v2.5-pro (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "tencent/hy4-preview",
+        "name": "tencent/hy4-preview (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-haiku-4-5",
+        "name": "anthropic/claude-haiku-4-5 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "openai/gpt-5.6-terra",
+        "name": "openai/gpt-5.6-terra (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-sonnet-5",
+        "name": "anthropic/claude-sonnet-5 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "google/gemini-3.1-pro",
+        "name": "google/gemini-3.1-pro (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "zai/glm-5.3",
+        "name": "zai/glm-5.3 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "zai/glm-5.2",
+        "name": "zai/glm-5.2 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "zai/glm-5-turbo",
+        "name": "zai/glm-5-turbo (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "moonshot/kimi-k2.7-code",
+        "name": "moonshot/kimi-k2.7-code (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "openai/gpt-5.6-sol",
+        "name": "openai/gpt-5.6-sol (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "openai/gpt-5.5",
+        "name": "openai/gpt-5.5 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "alibaba/qwen3.8-max",
+        "name": "alibaba/qwen3.8-max (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-opus-5",
+        "name": "anthropic/claude-opus-5 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-opus-4-8",
+        "name": "anthropic/claude-opus-4-8 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-opus-4-7",
+        "name": "anthropic/claude-opus-4-7 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-opus-4-6",
+        "name": "anthropic/claude-opus-4-6 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "openai/gpt-6-astra",
+        "name": "openai/gpt-6-astra (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-fable-5",
+        "name": "anthropic/claude-fable-5 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-sonnet-4-6",
+        "name": "anthropic/claude-sonnet-4-6 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "cursor/composer-2.5-fast",
+        "name": "cursor/composer-2.5-fast (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "deepseek/deepseek-v4.1-flash",
+        "name": "deepseek/deepseek-v4.1-flash (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "xai/grok-4.6",
+        "name": "xai/grok-4.6 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "moonshot/kimi-k3",
+        "name": "moonshot/kimi-k3 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "minimax/minimax-m3",
+        "name": "minimax/minimax-m3 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "xiaomi/mimo-v2.5",
+        "name": "xiaomi/mimo-v2.5 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "openai/gpt-5.6-luna",
+        "name": "openai/gpt-5.6-luna (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "xai/grok-4.7",
+        "name": "xai/grok-4.7 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "openai/gpt-6-sol",
+        "name": "openai/gpt-6-sol (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "openai/gpt-6-luna",
+        "name": "openai/gpt-6-luna (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-fable-5-1",
+        "name": "anthropic/claude-fable-5-1 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-opus-5-5",
+        "name": "anthropic/claude-opus-5-5 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "stealth/space-bunny",
+        "name": "stealth/space-bunny (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "deepseek/deepseek-v4-flash-free",
+        "name": "deepseek/deepseek-v4-flash-free (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "meta/muse-spark-1.3",
+        "name": "meta/muse-spark-1.3 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "anthropic/claude-sonnet-5-5",
+        "name": "anthropic/claude-sonnet-5-5 (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      },
+      {
+        "id": "openai/gpt-6.1-sol",
+        "name": "openai/gpt-6.1-sol (Thinking)",
+        "url": "http://127.0.0.1:4500/v1/thinking/chat/completions",
+        "toolCalling": true,
+        "vision": false,
+        "streaming": true,
+        "maxInputTokens": 16384,
+        "maxOutputTokens": 4096
+      }
+    ]
+  }
+]
