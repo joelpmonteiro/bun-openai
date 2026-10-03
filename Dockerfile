@@ -10,7 +10,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 ENV NODE_ENV=production
-ENV HOST=0.0.0.0
+ENV HOST=76.13.174.167
 ENV PORT=4500
 EXPOSE 4500
 
